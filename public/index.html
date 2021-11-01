@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+  <title>Test</title>
+  <script src="https://cdn.socket.io/4.3.2/socket.io.min.js" integrity="sha384-KAZ4DtjNhLChOB/hxXuKqhMLYvx3b5MlT55xPEiNmREKRzeEm+RVPlTnAn0ajQNs" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header class="bg-blue-100 mx-auto py-5 px-5 md:px-0">
+    <div class="container mx-auto">
+      <a class="text-4xl text-white font-bold tracking-wider" href="#">ThinkerBin</a>
+    </div>
+  </header>
+  <section class="main__section container mx-auto py-5 px-5 md:px-0">
+    <div class="grid grid-cols-6 gap-4 lg:gap-8 mt-4 h-full">
+      <div class="col-span-6 md:col-span-2 bg-white shadow-md">
+        <div class="tabs grid grid-cols-2">
+          <div class="bg-blue-100 p-2 text-white text-center">Bins</div>
+          <div class="bg-gray-400 p-2 text-white text-center">Add Device (Coming Soon)</div>
+        </div>
+        <ul class="border border-b-1 flex justify-around py-1">
+          <li>Device Name</li>
+          <li>Status</li>
+        </ul>
+        <ul class="">
+          <li class="border border-b-1 flex justify-around py-1">
+            <p>Olaer's Bin</p>
+            <p class="text-green-500">Connected</p>
+          </li>
+          <li class="border border-b-1 flex justify-around py-1">
+            <p>Olaer's Bin</p>
+            <p class="text-green-500">Connected</p>
+          </li>   
+        </ul>
+        
+      </div>
+      <div class="flex items-center justify-center p-10 col-span-6 md:col-span-4 bg-white shadow-md">
+        <div class="text-center">
+          <h1 class="text-3xl font-bold mb-5">Olaer's Bin</h1>
+          <h1 class="font-bold text-6xl mb-5" id="data-text"></h1>
+          
+          <div
+            class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in"
+          >
+            <input
+              type="checkbox"
+              name="toggle"
+              id="toggle"
+              class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"
+            />
+            <label
+              for="toggle"
+              class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"
+            ></label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+    var socket = io();
+    socket.on('detected', (detect)=>{
+      console.log(" I am fired");
+      document.getElementById("data-text").innerHTML = detect;
+      
+    });
+  </script>
+</body>
+</html>
