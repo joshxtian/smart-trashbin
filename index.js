@@ -35,8 +35,7 @@ board.on('ready', function() {
     pin: "A1"
   });
   servo = new Servo({
-    debug: true,
-    pin: "A5" 
+    pin: "12"
   });
 
   proximity = new Proximity({
@@ -44,18 +43,22 @@ board.on('ready', function() {
     pin: "A4",
     freq: 50
   });
- 
-  
+
   proximity.on("data", function() {
     console.log(this.cm);
     if(this.cm <= 15) {
       led.on(); 
-      servo.sweep();
+      servo.sweep({
+        range: [45, 135], 
+        interval: 1000,
+        step: 10
+      });
       var detected = true;
       io.emit('detected', detected);
     }
-    else {
+    else if(this.cm > 15) {
       led.off();
+      servo.stop();
       var detected = false;
 
       io.emit('detected', detected);
