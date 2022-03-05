@@ -39,8 +39,24 @@
       </div>
       <div class="flex items-center justify-center p-10 col-span-6 md:col-span-4 bg-white shadow-md">
         <div class="text-center">
-          <h1 class="text-3xl font-bold mb-5">Bin 1</h1>
-          <h1 class="font-bold text-6xl mb-5" id="data-text"></h1>
+          <h1 class="text-3xl font-bold mb-2">Bin 1</h1>
+          <p class="status-indicator">Closed</p>
+          
+          <!-- <h1 class="font-bold text-6xl mb-5" id="data-text"></h1> -->  
+
+          <div class="radial-bar">
+            <div class="circle-wrap">
+              <div class="circle">
+                <div class="mask full">
+                  <div class="fill"></div>
+                </div>
+                <div class="mask half">
+                  <div class="fill"></div>
+                </div>
+                <div class="inside-circle"> 75% </div>
+              </div>
+            </div>
+          </div>
           
           <div
             class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in"
@@ -60,13 +76,6 @@
       </div>
     </div>
   </section>
-  <script>
-    var socket = io();
-    socket.on('detected', (detect)=>{
-      console.log(" I am fired");
-      document.getElementById("data-text").innerHTML = detect;
-      
-    });
-  </script>
+  <script src="ioScript.js"></script>
 </body>
 </html>
