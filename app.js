@@ -12,19 +12,19 @@ board.on("ready", function() {
     pin: "A0",
     freq: 100
   });
-  servo = new Servo({
-    pin: 13,
-    type: "continuous",
-    startAt: 0,
-    center: true,
-    debug: true,
-  });
-  servo.isMoving = false;
-  proximity1 = new Proximity({
-    controller: "HCSR04",
-    pin: "A1",
-    freq: 100
-  });
+  // servo = new Servo({
+  //   pin: 13,
+  //   type: "continuous",
+  //   startAt: 0,
+  //   center: true,
+  //   debug: true,
+  // });
+  // servo.isMoving = false;
+  // proximity1 = new Proximity({
+  //   controller: "HCSR04",
+  //   pin: "A1",
+  //   freq: 100
+  // });
 
   
   // led = new Led({
@@ -55,7 +55,7 @@ board.on("ready", function() {
   // proximity1.within([ 0, 10 ], "cm", function() {
   //   console.log(this.cm);
   // });
-  proximity1.on("data", function () {
+  proximity.on("data", function () {
     console.log("cm: " + this.cm);
   });
 

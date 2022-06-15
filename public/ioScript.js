@@ -10,11 +10,12 @@ var socket = io();
         statusIndicator[0].innerHTML = "Open";
         statusIndicator[0].classList.add("--active");
       }
-      
+
     });
 
     socket.on('sendMeasurement', (measure)=>{
       var max = 49;
+      var half = max/2;
       var currentValue = Math.round(((max-measure)/max)*180);
       var currentPercent = Math.round(((max-measure)/max)*100);
       
@@ -32,10 +33,10 @@ var socket = io();
           })
           
         }
-        else if (currentValue >= 180/2 && currentValue < 180-10) {
-          maskFill.forEach(el=>{
+        else if (measure <= half && currentValue < 180-10) {
+          maskFill.forEach(el => {
             el.style.backgroundColor = "#FFD580";
-          })
+          });
         }
         else if (currentValue >= 180-10) {
           maskFill.forEach(el=>{
